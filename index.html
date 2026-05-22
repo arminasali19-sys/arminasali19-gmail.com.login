@@ -1,0 +1,533 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BSIS-2B Portal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#050b14;
+    font-family:'Poppins',sans-serif;
+    position:relative;
+}
+
+/* BACKGROUND GLOW */
+
+body::before{
+    content:'';
+    position:absolute;
+    width:700px;
+    height:700px;
+    background:radial-gradient(circle,#00f0ff44,transparent 70%);
+    top:-250px;
+    left:-200px;
+    animation:move1 12s linear infinite alternate;
+}
+
+body::after{
+    content:'';
+    position:absolute;
+    width:700px;
+    height:700px;
+    background:radial-gradient(circle,#00ff8844,transparent 70%);
+    bottom:-250px;
+    right:-200px;
+    animation:move2 10s linear infinite alternate;
+}
+
+@keyframes move1{
+    from{transform:translate(0,0);}
+    to{transform:translate(90px,60px);}
+}
+
+@keyframes move2{
+    from{transform:translate(0,0);}
+    to{transform:translate(-90px,-60px);}
+}
+
+/* STARS */
+
+.stars{
+    position:absolute;
+    width:100%;
+    height:100%;
+}
+
+.stars span{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:#00f0ff;
+    border-radius:50%;
+    animation:stars linear infinite;
+}
+
+@keyframes stars{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-1000px);
+        opacity:0;
+    }
+}
+/* CONTAINER */
+
+.container{
+    width:380px;
+    padding:35px;
+    border-radius:28px;
+    background:rgba(8,20,30,0.75);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(0,240,255,0.12);
+    position:relative;
+    z-index:10;
+    overflow:hidden;
+    color:white;
+
+    box-shadow:
+    0 0 30px rgba(0,240,255,0.18),
+    0 0 50px rgba(0,255,136,0.15);
+
+    animation:fade 1s ease;
+}
+
+/* ANIMATED BORDER */
+
+.container::before{
+    content:'';
+    position:absolute;
+    inset:-2px;
+    border-radius:30px;
+
+    background:linear-gradient(
+        45deg,
+        #00f0ff,
+        #00ff88,
+        #5effd5,
+        #00f0ff
+    );
+
+    background-size:400%;
+    animation:borderGlow 8s linear infinite;
+    z-index:-1;
+}
+
+.container::after{
+    content:'';
+    position:absolute;
+    inset:2px;
+    border-radius:26px;
+    background:rgba(8,20,30,0.95);
+    z-index:-1;
+}
+
+@keyframes borderGlow{
+    0%{background-position:0 0;}
+    100%{background-position:400% 0;}
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(0.95);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* LOGO */
+
+.logo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:34px;
+    color:#00f0ff;
+    letter-spacing:3px;
+    text-shadow:0 0 18px #00f0ff;
+}
+
+.logo p{
+    margin-top:6px;
+    color:#d9fffa;
+    font-size:13px;
+}
+
+/* INPUTS */
+
+.input-box{
+    position:relative;
+    margin-bottom:18px;
+}
+
+.input-box input{
+    width:100%;
+    padding:15px 48px 15px 15px;
+    border:none;
+    outline:none;
+    border-radius:14px;
+    background:#102636;
+    color:white;
+    border:1px solid rgba(0,240,255,0.08);
+    transition:0.3s;
+}
+
+.input-box input:focus{
+    border-color:#00f0ff;
+    box-shadow:0 0 18px rgba(0,240,255,0.35);
+}
+
+.input-box span{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:18px;
+}
+/* BUTTON */
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(90deg,#00f0ff,#00ff88);
+    color:#04141d;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 25px #00f0ff,
+    0 0 40px #00ff88;
+}
+
+/* LINKS */
+
+.switch{
+    text-align:center;
+    margin-top:18px;
+    color:#d9fffa;
+}
+
+.switch a{
+    color:#00f0ff;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.switch a:hover{
+    text-decoration:underline;
+}
+
+/* DASHBOARD */
+
+.profile{
+    text-align:center;
+}
+
+.profile img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #00f0ff;
+    box-shadow:0 0 25px #00f0ff;
+    margin-bottom:20px;
+}
+
+.info{
+    background:#102636;
+    padding:14px;
+    border-radius:14px;
+    margin:12px 0;
+    border:1px solid rgba(0,240,255,0.08);
+}
+
+.info b{
+    color:#00f0ff;
+}
+
+.hidden{
+    display:none;
+}
+
+@media(max-width:450px){
+
+    .container{
+        width:92%;
+        padding:28px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<!-- REGISTER -->
+
+<div class="container" id="registerPage">
+
+    <div class="logo">
+        <h1>BSIS-2B</h1>
+        <p>Aqua Neon Student Portal</p>
+    </div>
+
+    <div class="input-box">
+        <input type="text" id="name" placeholder="Full Name">
+        <span>👤</span>
+    </div>
+
+    <div class="input-box">
+        <input type="text" id="age" placeholder="Age">
+        <span>🎂</span>
+    </div>
+
+    <div class="input-box">
+        <input type="date" id="birthdate">
+        <span>📅</span>
+    </div>
+
+    <div class="input-box">
+        <input type="text" id="course" placeholder="Course & Section">
+        <span>🎓</span>
+    </div>
+
+    <div class="input-box">
+        <input type="email" id="email" placeholder="Email">
+        <span>📧</span>
+    </div>
+
+    <div class="input-box">
+        <input type="text" id="username" placeholder="Username">
+        <span>🧑</span>
+    </div>
+
+    <div class="input-box">
+        <input type="password" id="password" placeholder="Password">
+        <span onclick="togglePassword('password',this)" style="cursor:pointer;">👁</span>
+    </div>
+
+    <div class="input-box">
+        <input type="file" id="photo" accept="image/*">
+    </div>
+
+    <button onclick="register()">CREATE ACCOUNT</button>
+
+    <div class="switch">
+        Already have account?
+        <a onclick="showLogin()">Login</a>
+    </div>
+
+</div>
+
+<!-- LOGIN -->
+
+<div class="container hidden" id="loginPage">
+
+    <div class="logo">
+        <h1>LOGIN</h1>
+        <p>Access Your Dashboard</p>
+    </div>
+
+    <div class="input-box">
+        <input type="text" id="loginUser" placeholder="Username">
+        <span>👤</span>
+    </div>
+
+    <div class="input-box">
+        <input type="password" id="loginPass" placeholder="Password">
+        <span onclick="togglePassword('loginPass',this)" style="cursor:pointer;">👁</span>
+    </div>
+
+    <button onclick="login()">ENTER</button>
+
+    <div class="switch">
+        No account?
+        <a onclick="showRegister()">Register</a>
+    </div>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div class="container hidden" id="dashboardPage">
+
+    <div class="profile">
+        <img id="displayPhoto" src="">
+    </div>
+
+    <div class="info"><b>Full Name:</b> <span id="dName"></span></div>
+    <div class="info"><b>Age:</b> <span id="dAge"></span></div>
+    <div class="info"><b>Birthdate:</b> <span id="dBirthdate"></span></div>
+    <div class="info"><b>Course:</b> <span id="dCourse"></span></div>
+    <div class="info"><b>Email:</b> <span id="dEmail"></span></div>
+    <div class="info"><b>Username:</b> <span id="dUser"></span></div>
+
+    <button onclick="logout()">LOGOUT</button>
+
+</div>
+<script>
+
+const stars = document.querySelector('.stars');
+
+for(let i=0;i<150;i++){
+
+    let star = document.createElement('span');
+
+    let size = Math.random()*3;
+
+    star.style.width = size+'px';
+    star.style.height = size+'px';
+
+    star.style.left = Math.random()*window.innerWidth+'px';
+    star.style.top = Math.random()*window.innerHeight+'px';
+
+    star.style.animationDuration = (Math.random()*10+5)+'s';
+
+    stars.appendChild(star);
+}
+
+function showLogin(){
+    registerPage.classList.add("hidden");
+    loginPage.classList.remove("hidden");
+}
+
+function showRegister(){
+    loginPage.classList.add("hidden");
+    registerPage.classList.remove("hidden");
+}
+
+function register(){
+
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+    let birthdate = document.getElementById("birthdate").value;
+    let course = document.getElementById("course").value;
+    let email = document.getElementById("email").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let file = document.getElementById("photo").files[0];
+
+    if(
+        !name || !age || !birthdate ||
+        !course || !email ||
+        !username || !password
+    ){
+        alert("Complete all fields!");
+        return;
+    }
+
+    if(!file){
+        alert("Upload photo!");
+        return;
+    }
+
+    let reader = new FileReader();
+
+    reader.onload = function(){
+
+        let user = {
+            name,
+            age,
+            birthdate,
+            course,
+            email,
+            username,
+            password,
+            photo: reader.result
+        };
+
+        localStorage.setItem("user",JSON.stringify(user));
+
+        alert("Registration Successful!");
+        showLogin();
+    }
+
+    reader.readAsDataURL(file);
+}
+
+function login(){
+
+    let username = loginUser.value;
+    let password = loginPass.value;
+
+    let user = JSON.parse(localStorage.getItem("user"));
+
+    if(user &&
+       username===user.username &&
+       password===user.password){
+
+        loginPage.classList.add("hidden");
+        dashboardPage.classList.remove("hidden");
+
+        dName.innerHTML = user.name;
+        dAge.innerHTML = user.age;
+        dBirthdate.innerHTML = user.birthdate;
+        dCourse.innerHTML = user.course;
+        dEmail.innerHTML = user.email;
+        dUser.innerHTML = user.username;
+        displayPhoto.src = user.photo;
+
+    }else{
+        alert("Invalid Username or Password!");
+    }
+
+}
+
+function logout(){
+
+    dashboardPage.classList.add("hidden");
+    loginPage.classList.remove("hidden");
+
+}
+
+function togglePassword(id,icon){
+
+    let input = document.getElementById(id);
+
+    if(input.type==="password"){
+        input.type="text";
+        icon.innerHTML="🙈";
+    }else{
+        input.type="password";
+        icon.innerHTML="👁";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
